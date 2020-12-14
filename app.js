@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const movie = require('./routes/movie');
+const movie = require('./routes/movie.js');
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: { message: err.message, code: err.code } });
 });
 
 module.exports = app;
